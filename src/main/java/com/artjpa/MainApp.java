@@ -1,10 +1,13 @@
 package com.artjpa;
 
 import com.artjpa.AppConfig.ApplicationConfig;
+import com.artjpa.entities.Costumer;
 import com.artjpa.entities.Product;
 import com.artjpa.entities.User;
 import com.artjpa.repository.ProductRepository;
 import com.artjpa.repository.UserRepository;
+import com.artjpa.service.impl.CostumerServiceImpl;
+import com.artjpa.service.impl.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,17 +18,20 @@ import java.math.BigDecimal;
 public class MainApp {
 
     public static void main(String[] args) {
-        ApplicationContext context= new AnnotationConfigApplicationContext(ApplicationConfig.class);
-        UserRepository userRepository =(UserRepository) context.getBean("userRepository");
-        ProductRepository productRepository = (ProductRepository)context.getBean("productRepository");
+        ApplicationContext context= new AnnotationConfigApplicationContext(ApplicationConfig.class);;
+        ProductServiceImpl productService = context.getBean(ProductServiceImpl.class);
+        CostumerServiceImpl costumerService =context.getBean(CostumerServiceImpl.class);
 
-        Product product = new Product();
-        product.setName("Morccan Leg");
-        product.setDescription("Morccan Table from agadir");
-        product.setQteStock(10);
-        product.setPrice(new BigDecimal("120.5"));
-        Product saved =  productRepository.findByName(product.getName());
-        System.out.println(saved);
+//        Costumer costumer =new Costumer();
+//        costumer.setAdress("Ruse Casa");
+//        costumer.setName("Nabil Mix");
+//        costumer.setEmail("Nabil@example.com");
+//        costumer.setPhone("+21267534023");
+//        costumerService.addCostumer(costumer);
+//        costumerService.getAllCostumers().forEach(System.out::println);
+
+
+
 
 
 
