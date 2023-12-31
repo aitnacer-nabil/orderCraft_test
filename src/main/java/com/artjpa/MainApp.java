@@ -19,8 +19,6 @@ public class MainApp {
 
     public static void main(String[] args) {
         ApplicationContext context= new AnnotationConfigApplicationContext(ApplicationConfig.class);;
-        ProductServiceImpl productService = context.getBean(ProductServiceImpl.class);
-        CostumerServiceImpl costumerService =context.getBean(CostumerServiceImpl.class);
 
 //        Costumer costumer =new Costumer();
 //        costumer.setAdress("Ruse Casa");

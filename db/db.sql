@@ -1,3 +1,4 @@
+create database  `learn_jpa`;
 use learn_jpa;
 ALTER TABLE products
     MODIFY COLUMN name VARCHAR(255);

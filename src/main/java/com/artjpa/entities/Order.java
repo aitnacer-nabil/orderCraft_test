@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -22,8 +24,8 @@ public class Order {
     private LocalDateTime dateCreated;
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "custumer_id_fk",referencedColumnName = "id")
-    private Costumer costumer;
+
+
+
 
 }

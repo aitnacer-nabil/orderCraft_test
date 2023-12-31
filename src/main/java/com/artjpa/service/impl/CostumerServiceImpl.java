@@ -25,13 +25,13 @@ public class CostumerServiceImpl implements ICostumerService {
     }
 
     @Override
-    public Costumer updateCostumer(Costumer costumer) throws Throwable {
-        isExitsOrThrowExcp(costumer.getId());
+    public Costumer updateCostumer(long id,Costumer costumer) throws Throwable {
+        isExitsOrThrowExcp(id);
         return costumerRepository.save(costumer);
     }
 
     @Override
-    public void deleteCostumerById(Long id) throws Throwable {
+    public void deleteCostumerById(long id) throws Throwable {
         isExitsOrThrowExcp(id);
         costumerRepository.deleteById(id);
     }
@@ -42,11 +42,11 @@ public class CostumerServiceImpl implements ICostumerService {
     }
 
     @Override
-    public Optional<Costumer> getCostumerById(Long id) {
+    public Optional<Costumer> getCostumerById(long id) {
         return costumerRepository.findById(id);
     }
 
-    private void isExitsOrThrowExcp(Long id) throws Throwable {
+    private void isExitsOrThrowExcp(long id) throws Throwable {
         if (!costumerRepository.existsById(id)) throw new Throwable("Not Costumer fond with this id " + id);
 
     }

@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement(proxyTargetClass = true)
 @EnableJpaRepositories(basePackages = "com.artjpa.repository")
 @ComponentScan(basePackages = {"com.artjpa"})
 public class ApplicationConfig {

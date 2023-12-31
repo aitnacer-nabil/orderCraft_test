@@ -5,13 +5,9 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@Data
 @Entity
-@Table(name = "products",uniqueConstraints = @UniqueConstraint(
+@Table(name = "products", uniqueConstraints = @UniqueConstraint(
         name = "name_unique",
         columnNames = "name"
 ))
@@ -25,8 +21,18 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private BigDecimal price;
-    @Column(nullable = false)
-    private int qteStock;
 
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "product",fetch = FetchType.EAGER)
+    private Inventory inventory;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", Inventory ='" + inventory + '\'' +
+                '}';
+    }
 }

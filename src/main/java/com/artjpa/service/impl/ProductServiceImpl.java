@@ -1,9 +1,13 @@
 package com.artjpa.service.impl;
 
+import com.artjpa.entities.Inventory;
 import com.artjpa.entities.Product;
+import com.artjpa.repository.InventoryRepository;
 import com.artjpa.repository.ProductRepository;
 import com.artjpa.service.IProductService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -14,11 +18,15 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Primary
 public class ProductServiceImpl implements IProductService {
     private ProductRepository productRepository;
+
+    private InventoryRepository inventoryRepository;
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, InventoryRepository inventoryRepository) {
         this.productRepository = productRepository;
+        this.inventoryRepository = inventoryRepository;
     }
 
     @Override
@@ -27,13 +35,16 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
+    @Transactional
     public Optional<Product> saveProduct(Product product) {
+
+
         return Optional.of(productRepository.save(product));
     }
 
     @Override
     public void deleteProductById(Long id) {
-
+     productRepository.deleteById(id);
     }
 
     @Override
