@@ -43,7 +43,8 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void deleteProductById(Long id) {
+    public void deleteProductById(Long id) throws Throwable {
+        isExitsOrThrowExcp(id);
      productRepository.deleteById(id);
     }
 
@@ -51,6 +52,14 @@ public class ProductServiceImpl implements IProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Optional<Product> updateProduct(Long id, Product product) throws Throwable {
+        isExitsOrThrowExcp(id);
+        product.setId(id);
+        return Optional.of(productRepository.save(product));
+    }
+
     public void pagination() {
         int pageNo = 0;
         int pageSize = 5;
@@ -90,6 +99,10 @@ public class ProductServiceImpl implements IProductService {
         products.forEach(System.out::println);
 
 
+
+    }
+    private void isExitsOrThrowExcp(long id) throws Throwable {
+        if (!productRepository.existsById(id)) throw new Throwable("Not Costumer fond with this id " + id);
 
     }
 }

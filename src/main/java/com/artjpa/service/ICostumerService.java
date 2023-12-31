@@ -1,17 +1,19 @@
 package com.artjpa.service;
 
-import com.artjpa.entities.Costumer;
+import com.artjpa.entities.Customer;
+import com.artjpa.entities.Order;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ICostumerService {
 
-     Costumer addCostumer(Costumer costumer) ;
+     Customer addCostumer(Customer customer) ;
 
-    Costumer updateCostumer(long id,Costumer costumer) throws Throwable;
+    Customer updateCostumer(long id, Customer customer) throws Throwable;
     void deleteCostumerById(long id) throws Throwable;
-    List<Costumer> getAllCostumers();
-    Optional<Costumer> getCostumerById(long id);
+    List<Customer> getAllCostumers();
+    Optional<Customer> getCostumerById(long id);
+    List<Order> getCostumerOrders(Customer customer);
 
 }

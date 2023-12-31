@@ -7,8 +7,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 @Entity
@@ -17,6 +18,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String status;
 
     private BigDecimal totalPrice;
@@ -24,8 +26,11 @@ public class Order {
     private LocalDateTime dateCreated;
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order", orphanRemoval = true)
+    private List<OrderItem> orderItems = new ArrayList<>();
 
-
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    private Customer customer;
 
 }

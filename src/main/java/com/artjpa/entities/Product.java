@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -25,6 +29,8 @@ public class Product {
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "product",fetch = FetchType.EAGER)
     private Inventory inventory;
 
+    @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "product",fetch = FetchType.LAZY)
+    private List<OrderItem> orderItemSet =  new ArrayList<>();
     @Override
     public String toString() {
         return "Product{" +

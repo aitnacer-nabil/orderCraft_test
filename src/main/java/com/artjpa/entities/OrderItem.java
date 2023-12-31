@@ -14,8 +14,13 @@ public class OrderItem {
     private long id;
     private BigDecimal price;
     private int quantity;
-    @OneToOne
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id",referencedColumnName = "id")
+    private Order order;
+
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
-
 }

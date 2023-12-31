@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="nabil" pattern="src:com.artjpa.*||test:*..*" />
+</component>

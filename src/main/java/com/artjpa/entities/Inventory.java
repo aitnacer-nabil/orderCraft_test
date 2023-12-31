@@ -6,7 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 @Data
 @Entity
-@Table(name = "inventory")
+@Table(name = "inventories")
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Inventory {
     @Column(name = "quantity_sales")
     private int quantitySales;
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id",referencedColumnName = "id",nullable = false)
     private Product product;
 
     @Override

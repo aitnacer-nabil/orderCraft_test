@@ -1,0 +1,6 @@
+<component name="CopyrightManager">
+  <copyright>
+    <option name="notice" value="Copyright (c) &amp;#36;originalComment.match(&quot;Copyright \(c\) (\d+)&quot;, 1, &quot;-&quot;, &quot;&amp;#36;today.year&quot;)&amp;#36;today.year. &#10;/**&#10; * ----------------------------------------------------------------------------&#10; * &quot;THE BEER-WARE LICENSE&quot; (Révision 42):&#10; * &lt;Nabil Ait Naser&gt; a écrit ce fichier. En tant que titulaire des droits d'auteur,&#10; * je vous accorde, à vous qui utilisez ce fichier, le droit d'utiliser, de copier,&#10; * de modifier et de distribuer ce fichier ou son contenu à condition que vous&#10; * conserviez cette mention. Si vous trouvez ce fichier utile, vous pouvez me&#10; * payer une bière en retour.&#10; * ----------------------------------------------------------------------------&#10; */" />
+    <option name="myName" value="nabil ait nacer" />
+  </copyright>
+</component>

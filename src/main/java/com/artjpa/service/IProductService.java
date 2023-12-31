@@ -9,8 +9,9 @@ public interface IProductService {
 
      Optional<Product> getProductById(Long id);
      Optional<Product> saveProduct(Product product);
-     void deleteProductById(Long id);  // Vous n'avez probablement pas besoin d'un Optional pour la suppression
+     void deleteProductById(Long id) throws Throwable;  // Vous n'avez probablement pas besoin d'un Optional pour la suppression
      List<Product> getAllProducts();
+     Optional<Product> updateProduct(Long id,Product product) throws Throwable;
 
 
 
