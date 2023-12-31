@@ -7,8 +7,8 @@ import java.util.List;
 public interface IOrderService {
 
     Order createOrder(Order order);
-    Order getOrder(Long id);
+    Order getOrder(Long id) throws Throwable;
     List<Order> getAllOrders();
-    Order updateOrder(Order order);
-    void deleteOrder(Long id);
+    Order updateOrder(Order order) throws Throwable;
+    void deleteOrder(Long id) throws Throwable;
 }

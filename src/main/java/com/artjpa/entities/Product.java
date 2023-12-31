@@ -41,4 +41,5 @@ public class Product {
                 ", Inventory ='" + inventory + '\'' +
                 '}';
     }
+
 }

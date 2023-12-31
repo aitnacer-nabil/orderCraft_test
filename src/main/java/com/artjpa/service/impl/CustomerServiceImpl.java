@@ -3,7 +3,7 @@ package com.artjpa.service.impl;
 import com.artjpa.entities.Customer;
 import com.artjpa.entities.Order;
 import com.artjpa.repository.CustomerRepository;
-import com.artjpa.service.ICostumerService;
+import com.artjpa.service.ICustomerService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CostumerServiceImpl implements ICostumerService {
+public class CustomerServiceImpl implements ICustomerService {
     private CustomerRepository customerRepository;
 
     @Autowired
-    public CostumerServiceImpl(CustomerRepository customerRepository) {
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 

@@ -3,8 +3,6 @@ package com.artjpa.service.impl;
 import com.artjpa.AppConfig.ApplicationConfig;
 import com.artjpa.entities.Customer;
 import jakarta.transaction.Transactional;
-import org.hibernate.Hibernate;
-import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 @ContextConfiguration(classes = ApplicationConfig.class)
 class CustomerServiceImplTest {
     @Autowired
-    CostumerServiceImpl costumerService;
+    CustomerServiceImpl costumerService;
 
     @Test
     void addCostumer() {

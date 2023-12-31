@@ -58,7 +58,7 @@ public class ProductServiceImplTest {
             BigDecimal price = BigDecimal.valueOf(getRandomInt(10, 100));
             Inventory inventory = new Inventory();
             inventory.setQuantityInStock(getRandomInt(4,25));
-            inventory.setQuantitySales(0);
+
             Product product = new Product();
             product.setPrice(price);
             product.setDescription(description);

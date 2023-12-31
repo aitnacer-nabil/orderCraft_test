@@ -6,7 +6,7 @@ import com.artjpa.entities.Order;
 import java.util.List;
 import java.util.Optional;
 
-public interface ICostumerService {
+public interface ICustomerService {
 
      Customer addCostumer(Customer customer) ;
 

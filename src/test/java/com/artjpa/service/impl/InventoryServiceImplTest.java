@@ -26,7 +26,6 @@ class InventoryServiceImplTest {
     @Transactional
     void saveInventory() {
         Inventory inventory = new Inventory();
-        inventory.setQuantitySales(0);
         inventory.setQuantityInStock(14);
         Product product = new Product();
         product.setPrice(new BigDecimal(250));

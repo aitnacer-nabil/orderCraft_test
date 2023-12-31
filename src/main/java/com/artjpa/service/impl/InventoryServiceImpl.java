@@ -36,4 +36,5 @@ public class InventoryServiceImpl implements IInventoryService {
         inventoryRepository.deleteById(inventoryId);
 
     }
+
 }

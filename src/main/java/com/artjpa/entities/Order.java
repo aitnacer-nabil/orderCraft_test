@@ -21,7 +21,7 @@ public class Order {
 
     private String status;
 
-    private BigDecimal totalPrice;
+    private BigDecimal totalPrice = new BigDecimal(0);
     @CreationTimestamp
     private LocalDateTime dateCreated;
     @UpdateTimestamp
@@ -30,7 +30,24 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
+    public BigDecimal getTotalOrderItems(){
+        this.orderItems.forEach(orderItem -> {
+            this.totalPrice = this.totalPrice.add(orderItem.getAmount());
+        });
+        return this.totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", status='" + status + '\'' +
+                ", totalPrice=" + totalPrice +
+                ", dateCreated=" + dateCreated +
+                ", lastUpdated=" + lastUpdated +
+                '}';
+    }
 }
