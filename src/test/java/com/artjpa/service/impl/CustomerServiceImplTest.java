@@ -49,9 +49,7 @@ class CustomerServiceImplTest {
     void getAllCostumers() {
         List<Customer> customers = costumerService.getAllCostumers();
         assumeFalse(customers.isEmpty());
-        customers.forEach(customer -> {
-            System.out.println(customer.getOrders().size());
-        });    }
+       }
 
     @Test
     void getCostumerById() {
