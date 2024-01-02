@@ -1,6 +1,6 @@
 package com.artjpa.entities;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "user")

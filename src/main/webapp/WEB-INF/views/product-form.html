@@ -8,39 +8,40 @@
 <div class="container col-md-5">
     <div class="card">
         <div class="card-body">
-            <form th:action="${product.id != 0 ? 'update' : 'insert'}" method="post">
+            <form th:action="${productDto.id != null ? 'update' : 'insert'}" method="post">
                 <caption>
                     <h2>
-                        <span th:if="${product != null}">Edit product</span>
-                        <span th:if="${product == null}">Add New product</span>
+                        <span th:if="${productDto != null}">Edit product</span>
+                        <span th:if="${productDto == null}">Add New product</span>
                     </h2>
                 </caption>
 
-                <input type="hidden" name="id" th:value="${product.id != 0} ? ${product.id} : ''"/>
+                <input type="hidden" name="id" th:value="${productDto.id != 0} ? ${productDto.id} : ''"/>
+              
 
 
                 <fieldset class="form-group">
                     <label> Product name </label> <input type="text"
-                                                         th:value="${product != null} ? ${product.name} : ''"
+                                                         th:value="${productDto != null} ? ${productDto.name} : ''"
                                                          class="form-control"
                                                          name="name" required="required">
                 </fieldset>
 
                 <fieldset class="form-group">
                     <label>Product description</label> <input type="text"
-                                                              th:value="${product != null} ? ${product.description} : ''"
+                                                              th:value="${productDto != null} ? ${productDto.description} : ''"
                                                               class="form-control"
                                                               name="description">
                 </fieldset>
                 <fieldset class="form-group">
                     <label>Product price</label> <input type="number"
-                                                        th:value="${product != null} ? ${product.price} : ''"
+                                                        th:value="${productDto != null} ? ${productDto.price} : ''"
                                                         class="form-control"
                                                         name="price">
                 </fieldset>
                 <fieldset class="form-group">
                     <label>Product quantity stock</label> <input type="number"
-                                                                 th:value="${product != null} ? ${product.quantityInStock} : ''"
+                                                                 th:value="${productDto != null} ? ${productDto.quantityInStock} : ''"
                                                                  class="form-control"
                                                                  name="quantityInStock">
                 </fieldset>

@@ -3,7 +3,7 @@ package com.artjpa.service.impl;
 import com.artjpa.AppConfig.ApplicationConfig;
 import com.artjpa.entities.Inventory;
 import com.artjpa.entities.Product;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;

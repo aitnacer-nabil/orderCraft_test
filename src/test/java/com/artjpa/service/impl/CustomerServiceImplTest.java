@@ -3,7 +3,7 @@ package com.artjpa.service.impl;
 import com.artjpa.AppConfig.ApplicationConfig;
 import com.artjpa.ApplicationConfigTest;
 import com.artjpa.entities.Customer;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

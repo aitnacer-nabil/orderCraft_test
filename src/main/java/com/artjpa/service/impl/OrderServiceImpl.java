@@ -3,7 +3,7 @@ package com.artjpa.service.impl;
 import com.artjpa.entities.Order;
 import com.artjpa.repository.OrderRepository;
 import com.artjpa.service.IOrderService;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

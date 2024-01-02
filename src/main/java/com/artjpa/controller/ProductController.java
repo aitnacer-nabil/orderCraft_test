@@ -26,7 +26,7 @@ public class ProductController {
     @GetMapping("/new")
     public String showAddForm(Model model) {
 
-        model.addAttribute("product", new ProductDto());
+        model.addAttribute("productDto", new ProductDto());
         return "product-form";
     }
 
@@ -36,24 +36,45 @@ public class ProductController {
         model.addAttribute("listProducts", products);
         return "product";
     }
+//    @PostMapping("/insert")
+//    public String saveProduct(@ModelAttribute("productDto") ProductDto productDto) {
+////        Product product = new Product();
+////
+////        product.setName(productDto.getName());
+////        product.setDescription(productDto.getDescription());
+////        product.setPrice();
+////
+////        Inventory inventory = new Inventory();
+////        inventory.setQuantityInStock(productDto.getQuantityInStock());
+////        inventory.setProduct(product);
+////
+////        product.setInventory(inventory);
+////
+////        productService.saveProduct(product);
+//
+//        return "redirect:/product/list";
+//    }
     @PostMapping("/insert")
-    public String saveProduct(@ModelAttribute("product") ProductDto productDto) {
+    public String saveProduct(@ModelAttribute("productDto") ProductDto productDto) {
+        // Convert ProductDto to Product entity
         Product product = new Product();
-
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setPrice(new BigDecimal(productDto.getPrice()));
 
+        // Create Inventory and set quantityInStock
         Inventory inventory = new Inventory();
         inventory.setQuantityInStock(productDto.getQuantityInStock());
         inventory.setProduct(product);
 
+        // Set Inventory to Product
         product.setInventory(inventory);
 
-        productService.saveProduct(product);
+        // Save Product
+        productService.saveProduct( product);
 
+        // Redirect to product list page
         return "redirect:/product/list";
     }
-
 
 }

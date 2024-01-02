@@ -5,7 +5,7 @@ import com.artjpa.entities.Product;
 import com.artjpa.repository.InventoryRepository;
 import com.artjpa.repository.ProductRepository;
 import com.artjpa.service.IProductService;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;

@@ -5,7 +5,7 @@ import com.artjpa.entities.Customer;
 import com.artjpa.entities.Order;
 import com.artjpa.entities.OrderItem;
 import com.artjpa.entities.Product;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

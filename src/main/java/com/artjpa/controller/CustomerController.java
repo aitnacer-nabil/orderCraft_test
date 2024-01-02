@@ -3,8 +3,7 @@ package com.artjpa.controller;
 
 import com.artjpa.entities.Customer;
 import com.artjpa.service.impl.CustomerServiceImpl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +14,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
-    private static   final Logger logger = LogManager.getLogger(CustomerController.class);
 
     CustomerServiceImpl customerService;
     @Autowired
@@ -30,7 +28,6 @@ public class CustomerController {
     }
     @PostMapping("/insert")
     public String insertCustomer(@ModelAttribute("customer") Customer customer) {
-        logger.info("Insert Customer ",customer );
 
         customerService.addCostumer(customer);
         return "redirect:/customer/list";
@@ -44,7 +41,6 @@ public class CustomerController {
     @GetMapping("/edit")
     public String showEditForm(@RequestParam("id") String id, Model model) {
         Customer customer = customerService.getCostumerById(Long.parseLong(id)).get();
-        logger.warn("customer" + customer );
         model.addAttribute("customer", customer);
         return "customer-form";
     }
@@ -52,7 +48,6 @@ public class CustomerController {
     @GetMapping({"/", "/list"})
     public String listClients(Model model) {
         List<Customer> customers = customerService.getAllCostumers();
-        logger.info("Get All Customer" + customers);
         model.addAttribute("listCustomers", customers);
 
         return "customer";
