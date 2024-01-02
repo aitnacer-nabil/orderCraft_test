@@ -52,7 +52,7 @@ public class ProductServiceImplTest {
 //        ('Manteau en Velours', 'Manteau en velours traditionnel marocain', 920.00, 12),
 //        ('Table en Noyer', 'Table en bois de noyer avec incrustations', 880.99, 15),
 //        ('Lanterne Mauresque Géante', 'Lanterne mauresque géante en fer forgé', 720.00, 8)
-        for (int i = 0; i < 10; i++) {
+        for (int i = 11; i < 20; i++) {
             String name = "Produit Maroc " + (i + 1);
             String description = "Description du produit Maroc " + (i + 1);
             BigDecimal price = BigDecimal.valueOf(getRandomInt(10, 100));

@@ -1,6 +1,7 @@
 package com.artjpa.service.impl;
 
 import com.artjpa.AppConfig.ApplicationConfig;
+import com.artjpa.ApplicationConfigTest;
 import com.artjpa.entities.Customer;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class CustomerServiceImplTest {
 
     @Test
     void updateCostumer() throws Throwable {
-        Customer customer = costumerService.getCostumerById(1l).orElse(null);
+        Customer customer = costumerService.getCostumerById(2l).orElse(null);
         assertNotNull(customer);
         customer.setName("Nabil Mix");
         assertNotNull(costumerService.updateCostumer(customer.getId(),customer));
