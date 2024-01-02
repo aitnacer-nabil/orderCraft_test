@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: headerFragment ('Customer Management Application')">
+
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<br>
+<div class="container col-md-5">
+    <div class="card">
+        <div class="card-body">
+            <form  th:action="${customer.id != 0 ? 'update' : 'insert'}" method="post">
+                <caption>
+                    <h2>
+                        <span th:if="${customer != null}">Edit customer</span>
+                        <span th:if="${customer == null}">Add New customer</span>
+                    </h2>
+                </caption>
+
+                <input type="hidden" name="id" th:value="${customer != null} ? ${customer.id} : ''"/>
+
+                <fieldset class="form-group">
+                    <label>Customer Name</label>
+                    <input type="text" th:value="${customer != null} ? ${customer.name} : ''" class="form-control" name="name" required="required">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Customer Email</label>
+                    <input type="text" th:value="${customer != null} ? ${customer.email} : ''" class="form-control" name="email">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Customer Adress</label>
+                    <input type="text" th:value="${customer != null} ? ${customer.adress} : ''" class="form-control" name="adress">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Customer phone</label>
+                    <input type="text" th:value="${customer != null} ? ${customer.phone} : ''" class="form-control" name="phone">
+                </fieldset>
+
+                <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
