@@ -54,9 +54,6 @@ class OrderServiceImplTest {
         orderItem.setProduct(product);
         orderItem.setQuantity(12);
 
-
-
-
         Order order = new Order();
         List<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(orderItem);

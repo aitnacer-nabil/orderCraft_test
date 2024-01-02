@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment (title)">
+    <title th:text="${title}">Default Title</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark"
+         style="background-color: tomato">
+        <div>
+            <a href="#" class="navbar-brand"> Inventory Management App </a>
+        </div>
+
+        <ul class="navbar-nav">
+            <li><a th:href="@{/customer/list}" class="nav-link">Customer</a></li>
+            <li><a th:href="@{/product/list}" class="nav-link">Product</a></li>
+            <li><a th:href="@{/order/list}" class="nav-link">Orders</a></li>
+        </ul>
+    </nav>
+</header>
