@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping({"/","/customer"})
+@RequestMapping("/customer")
 public class CustomerController {
     private static   final Logger logger = LogManager.getLogger(CustomerController.class);
 
