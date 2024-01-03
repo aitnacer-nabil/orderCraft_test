@@ -16,9 +16,9 @@ import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
-@Configuration
-@EnableWebMvc
-@ComponentScan(basePackages = "com.artjpa")
+//@Configuration
+//@EnableWebMvc
+//@ComponentScan(basePackages = "com.artjpa")
 public class MvcConfig implements WebMvcConfigurer {
     @Autowired
     private ApplicationContext applicationContext;
