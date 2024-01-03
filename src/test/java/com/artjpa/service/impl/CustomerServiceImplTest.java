@@ -26,9 +26,9 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ApplicationConfig.class)
 class CustomerServiceImplTest {
+	
     @Autowired
-    CustomerServiceImpl costumerService;
-    
+    CustomerServiceImpl costumerService;    
     
     @Test
     @DisplayName("Test addCostumer method")
@@ -43,31 +43,31 @@ class CustomerServiceImplTest {
                 .orders(null)
                 .build();*/
     	 Customer customer = CustomerMock.mockRequest();
-    System.out.println("customer moock: "+customer);
-    	costumerService.addCostumer(customer);
+         System.out.println("customer moock: "+customer);
+         costumerService.addCostumer(customer);
 
-        Assertions.assertFalse(customer.getId()<=0);    
+         Assertions.assertFalse(customer.getId()<=0);    
     
     }
 
     @Test
     @DisplayName("Test updateCostumer method")
     void updateCostumer() throws Throwable {
-        Customer customer = costumerService.getCostumerById(10L).orElse(null);
+        Customer customer = costumerService.getCostumerById(11L).orElse(null);
         assertNotNull(customer);
         customer.setName("NaMix");
         assertNotNull(costumerService.updateCostumer(customer.getId(),customer));
     }
 
     @Test
-    @Order(5)
+    @Order(1)
     @Rollback(value = false)
     @DisplayName("Test deleteCostumer method")
     void deleteCostumerById() throws Throwable {
 
-     costumerService.deleteCostumerById(10L);
+     costumerService.deleteCostumerById(14L);
      Customer customer1 = null;
-     Optional<Customer> optionalCustomer = costumerService.getCostumerById(10L);
+     Optional<Customer> optionalCustomer = costumerService.getCostumerById(14L);
      if(optionalCustomer.isPresent()){
            customer1 = optionalCustomer.get();
      }
@@ -87,7 +87,7 @@ class CustomerServiceImplTest {
     @Test
     @DisplayName("Test getCostumerById method")
     void getCostumerById() {
-        Customer customer = costumerService.getCostumerById(11l).orElse(null);
+        Customer customer = costumerService.getCostumerById(15l).orElse(null);
         assertNotNull(customer);
     }
    /* List<Customer> createMoroccanCustomers(int count) {
