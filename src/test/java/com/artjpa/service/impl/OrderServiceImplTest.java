@@ -48,6 +48,7 @@ class OrderServiceImplTest {
 
         product.getInventory().setQuantitySales(12);
 
+
         assumeTrue(product.getInventory().getQuantityInStock() >= 0, "Quantité en stock ne peut pas être négative");
 
         OrderItem orderItem = new OrderItem();

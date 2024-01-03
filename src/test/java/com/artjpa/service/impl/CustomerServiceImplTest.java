@@ -55,7 +55,7 @@ class CustomerServiceImplTest {
 
     @Test
     void getCostumerById() {
-        Customer customer = costumerService.getCostumerById(1l).orElse(null);
+        Customer customer = costumerService.getCostumerById(2l).orElse(null);
         assertNotNull(customer);
     }
     List<Customer> createMoroccanCustomers(int count) {
