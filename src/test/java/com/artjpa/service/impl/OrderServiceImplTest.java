@@ -20,8 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assumptions.*;
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = ApplicationConfig.class)
+
 class OrderServiceImplTest {
 //    @Autowired
 //    CustomerServiceImpl customerService;
