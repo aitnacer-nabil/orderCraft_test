@@ -48,6 +48,7 @@ public class ApplicationConfig {
         jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         jpaProperties.put("hibernate.show_sql","true");
         jpaProperties.put("hibernate.format_sql", "true");
+        jpaProperties.put("hibernate.type.level", "TRACE");
         factory.setDataSource(dataSource());
         factory.setJpaProperties(jpaProperties);
         return factory;
