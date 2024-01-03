@@ -10,8 +10,10 @@ import java.util.List;
 
 @Service
 public class OrderItemService implements IOrderItemService {
+
     @Autowired
     OrderItemRepository orderItemRepository;
+
     @Override
     public OrderItem createOrderItem(OrderItem orderItem) {
         return orderItemRepository.save(orderItem);
@@ -40,6 +42,5 @@ public class OrderItemService implements IOrderItemService {
     }
     private void isExitsOrThrowExcp(long id) throws Throwable {
         if (!orderItemRepository.existsById(id)) throw new Throwable("Not Costumer fond with this id " + id);
-
     }
 }

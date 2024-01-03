@@ -66,7 +66,7 @@ public class ProductServiceImplTest {
     @Test
     void deleteProductById() throws Throwable {
         productService.deleteProductById(5L);
-        Optional<Product> deletedProduct = productService.getProductById(15L);
+        Optional<Product> deletedProduct = productService.getProductById(5L);
         assertFalse(deletedProduct.isPresent());
     }
 

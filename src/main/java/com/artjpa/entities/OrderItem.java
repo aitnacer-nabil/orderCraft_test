@@ -17,7 +17,12 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+
+    @Setter
     private BigDecimal amount= new BigDecimal(0);
+
+    @Setter
     private int quantity;
 
 
@@ -36,6 +41,12 @@ public class OrderItem {
 
         this.quantity = quantity;
         this.amount = this.product.getPrice().multiply(new BigDecimal(this.quantity));
+    }
+
+    public OrderItem(BigDecimal amount, int quantity, Product product) {
+        this.amount = amount;
+        this.quantity = quantity;
+        this.product = product;
     }
 
     @Override
