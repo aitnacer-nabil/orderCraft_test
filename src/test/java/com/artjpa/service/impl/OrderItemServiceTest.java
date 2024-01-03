@@ -57,18 +57,46 @@ class OrderItemServiceTest {
     }
 
     @Test
-    void getOrderItem() {
+    void getOrderItem() throws Throwable {
+        long orderItemId = 5L;
+        OrderItem orderItem = orderItemService.getOrderItem(orderItemId);
+        assertNotNull(orderItem);
     }
 
     @Test
     void getAllOrderItems() {
+        List<OrderItem> products = orderItemService.getAllOrderItems();
+        assertFalse(products.isEmpty());
     }
 
     @Test
-    void updateOrderItem() {
+    void updateOrderItem() throws Throwable {
+        long orderItemId = 5L;
+
+        OrderItem existingOrderItem = orderItemService.getOrderItem(orderItemId);
+        assertNotNull(existingOrderItem);
+
+        long productId = 2L;
+        Product product = productServiceImpl.getProductById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
+
+        int newQuantity = 5;
+        BigDecimal amount = product.getPrice().multiply(new BigDecimal(newQuantity));
+
+        existingOrderItem.setQuantity(newQuantity);
+        existingOrderItem.setAmount(amount);
+
+        OrderItem updatedOrderItem = orderItemService.updateOrderItem(existingOrderItem);
+
+        assertEquals(newQuantity, updatedOrderItem.getQuantity());
+        assertEquals(existingOrderItem.getAmount(), updatedOrderItem.getAmount());
     }
 
     @Test
-    void deleteOrderItem() {
+    void deleteOrderItem() throws Throwable {
+        long orderItemId = 5L;
+
+        orderItemService.deleteOrderItem(orderItemId);
+        OrderItem deletedOrderItem = orderItemService.getOrderItem(orderItemId);
+        assertNull(deletedOrderItem);
     }
 }
