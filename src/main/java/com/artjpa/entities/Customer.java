@@ -2,13 +2,17 @@ package com.artjpa.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "costumers",uniqueConstraints = {@UniqueConstraint(name = "unique_name",columnNames = "name"),
 @UniqueConstraint(name = "unique_email",columnNames = "email")})
 public class Customer {
