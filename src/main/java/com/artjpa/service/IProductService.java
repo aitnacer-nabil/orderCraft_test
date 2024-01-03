@@ -12,7 +12,4 @@ public interface IProductService {
      void deleteProductById(Long id) throws Throwable;  // Vous n'avez probablement pas besoin d'un Optional pour la suppression
      List<Product> getAllProducts();
      Optional<Product> updateProduct(Long id,Product product) throws Throwable;
-
-
-
 }

@@ -31,6 +31,17 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL,orphanRemoval = true,mappedBy = "product",fetch = FetchType.LAZY)
     private List<OrderItem> orderItemSet =  new ArrayList<>();
+
+    public Product(String name, String description, BigDecimal price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Product() {
+
+    }
+
     @Override
     public String toString() {
         return "Product{" +
