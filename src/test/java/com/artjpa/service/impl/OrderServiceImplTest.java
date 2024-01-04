@@ -67,6 +67,7 @@ class OrderServiceImplTest {
 
         order.setOrderItems(orderItems);
         order.setCustomer(customer);
+        customer.getOrders().add(order);
         order.setStatus("PREPARATION");
         order.setTotalPrice(order.getTotalOrderItems());
         orderItem.setOrder(order);
@@ -79,7 +80,7 @@ class OrderServiceImplTest {
     @Rollback(value = false)
     @DisplayName("Test getOrder method")
     void getOrder() throws Throwable {
-        Order order = orderService.getOrder(1l);
+        Order order = orderService.getOrder(8l);
         assumeTrue(order != null);
         System.out.println(order);
     }
@@ -98,7 +99,7 @@ class OrderServiceImplTest {
     @Rollback(value = false)
     @DisplayName("Test updateOrder method")
     void updateOrder() throws Throwable {
-            Order order = orderService.getOrderById(10L).orElse(null);
+            Order order = orderService.getOrderById(9L).orElse(null);
             assertNotNull(order);
             order.setStatus("COMPLETE");
             assertNotNull(orderService.updateOrder(order.getId(),order));
@@ -109,9 +110,9 @@ class OrderServiceImplTest {
     @DisplayName("Test deleteOrder method")
     void deleteOrderById() throws Throwable {
 
-     orderService.deleteOrder(10L);
+     orderService.deleteOrder(9L);
      Order order1 = null;
-     Optional<Order> optionalOrder = orderService.getOrderById(10L);
+     Optional<Order> optionalOrder = orderService.getOrderById(9L);
      if(optionalOrder.isPresent()){
            order1 = optionalOrder.get();
      }
