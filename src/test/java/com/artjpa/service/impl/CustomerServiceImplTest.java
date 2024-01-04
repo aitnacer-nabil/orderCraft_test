@@ -45,7 +45,7 @@ class CustomerServiceImplTest {
     @ParameterizedTest
     @Order(1)
     @DisplayName("Get Customers from csv file")
-    @CsvFileSource(resources = "/customer.csv", numLinesToSkip = 1, delimiter = ',')
+    @CsvFileSource(resources = "/customer.csv",  delimiter = ',')
     void shouldTestPhoneNumberFormatUsingCSVFileSource(String name, String email, String phone, String address) {
         System.out.println("shouldTestPhoneNumberFormatUsingCSVFileSource");
         Customer customer = new Customer();
@@ -66,6 +66,7 @@ class CustomerServiceImplTest {
 
         customers.forEach(customer -> {
             costumerService.addCostumer(customer);
+
         });
 
     }
@@ -95,6 +96,8 @@ class CustomerServiceImplTest {
         assumeFalse(customerUpdate == null);
         customerUpdate.setName("Updated Customer");
         customerUpdate.setEmail("Emxail@Example.com");
+        assertFalse(customerDb.getName().equalsIgnoreCase(customerUpdate.getName()));
+        assertFalse(customerDb.getEmail().equalsIgnoreCase(customerUpdate.getEmail()));
         assertNotSame(customerDb,customerUpdate);
 
 
@@ -104,8 +107,8 @@ class CustomerServiceImplTest {
     @Order(5)
     @DisplayName("Delete customer from db")
     void deleteCostumerById() throws Throwable {
-       costumerService.deleteCostumerById(3L);
-        assertFalse(costumerService.getCostumerById(3L).isPresent(), "Le client devrait être supprimé de la base de données");
+       costumerService.deleteCostumerById(4L);
+        assertFalse(costumerService.getCostumerById(4L).isPresent(), "Le client devrait être supprimé de la base de données");
 
     }
 
