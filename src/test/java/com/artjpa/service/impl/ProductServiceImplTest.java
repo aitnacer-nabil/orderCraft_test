@@ -103,10 +103,11 @@ public class ProductServiceImplTest {
     }
     @Test
     @DisplayName("Delete product And Name")
+    @Transactional
     @Order(5)
     void deleteProductById() throws Throwable {
-        productService.deleteProductById(3l);
-        assertFalse(productService.getProductById(3l).isPresent());
+        productService.deleteProductById(12l);
+        assertFalse(productService.getProductById(12l).isPresent());
     }
 
     @Test

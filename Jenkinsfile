@@ -12,18 +12,27 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Clean') {
             steps {
                 bat 'mvn clean '
             }
         }
 
-        stage('Test') {
+        stage('Test CustomerService') {
             steps {
-                bat 'mvn  test'
+                bat 'mvn test -Dtest=CustomerServiceImplTest'
             }
         }
-
+        stage('Test ProductService') {
+            steps {
+                bat 'mvn test -Dtest=ProductServiceImplTest '
+            }
+        }
+        stage('Test OrderService') {
+            steps {
+                bat 'mvn test -Dtest=OrderServiceImplTest'
+            }
+        }
     }
 
     post {
