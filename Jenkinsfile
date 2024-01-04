@@ -14,13 +14,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                bat 'mvn clean install'
+                bat 'mvn clean '
             }
         }
 
         stage('Test') {
             steps {
-                bat 'mvn compile test'
+                bat 'mvn  test'
             }
         }
 
