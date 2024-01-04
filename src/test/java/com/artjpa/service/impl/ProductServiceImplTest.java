@@ -72,6 +72,7 @@ public class ProductServiceImplTest {
 
     products.forEach(product1 -> {
         assertNotNull(productService.saveProduct(product1));
+
     });
 
 
