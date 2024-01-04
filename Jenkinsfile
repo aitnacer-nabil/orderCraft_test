@@ -8,13 +8,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/aitnacer-nabil/orderCraft_test'
+                git 'https://github.com/aitnacer-nabil/orderCraft_test', branch: 'jenkins'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'mvn clean'
+                bat 'mvn clean install'
             }
         }
 
