@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assumptions.*;
 
 
 @ExtendWith(SpringExtension.class)
-@WebAppConfiguration
 @ContextConfiguration(classes = ApplicationConfig.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductServiceImplTest {

@@ -22,7 +22,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 @ExtendWith(SpringExtension.class)
-@WebAppConfiguration
 @ContextConfiguration(classes = ApplicationConfig.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CustomerServiceImplTest {
