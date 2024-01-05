@@ -36,12 +36,14 @@ class CustomerServiceImplTest {
         System.out.println("BEfore ALL");
         customers = new ArrayList<>();
     }
+
     @BeforeEach
     void beforeEach() {
         // Charger un client spécifique avant chaque test
         id = 3L;
         customerDb = costumerService.getCostumerById(id).orElse(null);
     }
+
     @ParameterizedTest
     @Order(1)
     @DisplayName("Get Customers from csv file")
@@ -71,7 +73,6 @@ class CustomerServiceImplTest {
 
     }
 
-
     @Test
     @DisplayName("Get Ranodm Customer from the data base")
     @Order(3)
@@ -81,6 +82,7 @@ class CustomerServiceImplTest {
         assertNotNull(customerDb,"Customer from db is null");
         System.out.println(customerDb);
     }
+
     @Test
     @DisplayName("update the custome then ckeck if is updated")
     @Order(4)
@@ -120,7 +122,6 @@ class CustomerServiceImplTest {
         assertNotEquals(customersList.size(), customers.size());
 
     }
-
 
     @Test
     void getCostumerOrders() {

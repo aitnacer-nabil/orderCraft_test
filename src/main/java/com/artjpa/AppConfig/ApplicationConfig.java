@@ -28,7 +28,7 @@ public class ApplicationConfig {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setPassword("");
         dataSource.setUrl("jdbc:mysql://localhost:3306/learn_jpa");
         return dataSource;
     }
@@ -60,6 +60,4 @@ public class ApplicationConfig {
 
         return txManager;
     }
-
-
 }

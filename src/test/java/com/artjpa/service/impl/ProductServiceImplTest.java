@@ -46,6 +46,7 @@ public class ProductServiceImplTest {
         System.out.println("Before ALL Testing ProductService and inventoryService");
         products = new ArrayList<>();
     }
+
     @ParameterizedTest
     @Order(1)
     @DisplayName("Get Products from csv file")
@@ -63,6 +64,7 @@ public class ProductServiceImplTest {
         System.out.println(products.size());
 
     }
+
     @Test
     @DisplayName("Insert Products List to database")
     @Order(2)
@@ -73,9 +75,8 @@ public class ProductServiceImplTest {
     products.forEach(product1 -> {
         assertNotNull(productService.saveProduct(product1));
     });
-
-
     }
+
     @Test
     @DisplayName("Get Product And inventory ")
     @Order(3)
@@ -84,7 +85,6 @@ public class ProductServiceImplTest {
         System.out.println(product);
         assertNotNull(product);
     }
-
 
     @Test
     @DisplayName("Update Inventory and product")
@@ -100,6 +100,7 @@ public class ProductServiceImplTest {
         productUpdated.setName("Updated Product");
         assertNotEquals(product,productService.saveProduct(productUpdated));
     }
+
     @Test
     @DisplayName("Delete product And Name")
     @Order(5)
@@ -117,9 +118,5 @@ public class ProductServiceImplTest {
         products.forEach(product1 -> System.out.println(product1 +" "+ product1.getInventory()));
         assertFalse(products.isEmpty());
     }
-
-
-
-
 
 }
