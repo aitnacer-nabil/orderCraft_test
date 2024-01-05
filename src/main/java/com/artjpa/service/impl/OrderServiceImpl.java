@@ -43,7 +43,7 @@ public class OrderServiceImpl implements IOrderService {
 
     }
     private void isExitsOrThrowExcp(long id) throws Throwable {
-        if (!orderRepository.existsById(id)) throw new Throwable("Not Costumer fond with this id " + id);
+        if (!orderRepository.existsById(id)) throw new Throwable("Not Order fond with this id " + id);
 
     }
 }
