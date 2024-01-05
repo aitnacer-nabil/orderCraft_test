@@ -9,6 +9,7 @@ L'objectif principal de ce projet est de renforcer les compétences en programma
 
 ## Conception
 ### Database
+![db](https://github.com/aitnacer-nabil/orderCraft_test/assets/118471449/62000813-e4ac-401e-a51b-937c85d72aad)
 
 ### Principales étapes :
 Avant d'exécuter les tests, assurez-vous d'avoir configuré correctement les éléments suivants dans votre environnement de développement :
@@ -90,8 +91,11 @@ Consultez Jenkins pour obtenir des résultats détaillés des tests et des rappo
 Documentation
 
 Pour des informations détaillées sur chaque test et le but des tests unitaires de l'application OrderCraft, référez-vous aux commentaires intégrés dans les classes de test respectives.
+### Screen Test
+![Screenshot 2024-01-03 213340](https://github.com/aitnacer-nabil/orderCraft_test/assets/118471449/db27eba1-d11a-48d8-8953-dd7fb044f3b4)
 
 ### Screen jenkins
+![Screenshot jenkins](https://github.com/aitnacer-nabil/orderCraft_test/assets/118471449/373f71a9-a3e6-41b0-98be-52c8c282f53a)
 
 ## Les outils utilisés <a name = "outils-utilisés"></a>
 - IntelliJ IDEA
