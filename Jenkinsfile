@@ -33,6 +33,11 @@ pipeline {
                 bat 'mvn test -Dtest=OrderServiceImplTest'
             }
         }
+        stage('Test mvn') {
+            steps {
+                bat 'mvn -v'
+            }
+        }
     }
 
     post {
