@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-              git branch: 'jenkins', url: 'https://github.com/aitnacer-nabil/orderCraft_test'
+              git branch: 'hasnajenkins', url: 'https://github.com/aitnacer-nabil/orderCraft_test'
             }
         }
 
