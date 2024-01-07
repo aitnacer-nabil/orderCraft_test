@@ -1,78 +1,129 @@
 package com.artjpa.service.impl;
 
 import com.artjpa.AppConfig.ApplicationConfig;
-import com.artjpa.ApplicationConfigTest;
 import com.artjpa.entities.Customer;
-import javax.transaction.Transactional;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeFalse;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ApplicationConfig.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class CustomerServiceImplTest {
     @Autowired
     CustomerServiceImpl costumerService;
+    static List<Customer> customers;
+    Customer customerDb = new Customer();
+    long id;
+
+    @BeforeAll
+    static void setUp(){
+        System.out.println("BEfore ALL");
+        customers = new ArrayList<>();
+    }
+    @BeforeEach
+    void beforeEach() {
+        // Charger un client spécifique avant chaque test
+        id = 6L;
+        customerDb = costumerService.getCostumerById(id).orElse(null);
+    }
+    @ParameterizedTest
+    @Order(1)
+    @DisplayName("Get Customers from csv file")
+    @CsvFileSource(resources = "/customer.csv",  delimiter = ',')
+    void shouldTestPhoneNumberFormatUsingCSVFileSource(String name, String email, String phone, String address) {
+        System.out.println("shouldTestPhoneNumberFormatUsingCSVFileSource");
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setEmail(email);
+        customer.setPhone(phone);
+        customer.setAdress(address);
+        customers.add(customer);
+
+
+    }
 
     @Test
+    @Order(2)
+    @DisplayName("Add costumer list to database")
     void addCostumer() {
-        createMoroccanCustomers(6).forEach(customer -> {
+        System.out.println("Add cosutmer list to database");
+
+        customers.forEach(customer -> {
             costumerService.addCostumer(customer);
+
         });
 
-
     }
 
-    @Test
-    void updateCostumer() throws Throwable {
-        Customer customer = costumerService.getCostumerById(2l).orElse(null);
-        assertNotNull(customer);
-        customer.setName("Nabil Mix");
-        assertNotNull(costumerService.updateCostumer(customer.getId(),customer));
-    }
 
     @Test
-    void deleteCostumerById() throws Throwable {
-     costumerService.deleteCostumerById(6l);
-
-    }
-
-    @Test
-    @Transactional
-    void getAllCostumers() {
-        List<Customer> customers = costumerService.getAllCostumers();
-        assumeFalse(customers.isEmpty());
-        customers.forEach(System.out::println);
-       }
-
-    @Test
+    @DisplayName("Get Ranodm Customer from the data base")
+    @Order(3)
     void getCostumerById() {
-        Customer customer = costumerService.getCostumerById(2l).orElse(null);
-        assertNotNull(customer);
+        id = 3l;
+        customerDb = costumerService.getCostumerById(id).orElse(null);
+        assertNotNull(customerDb,"Customer from db is null");
+        System.out.println(customerDb);
     }
-    List<Customer> createMoroccanCustomers(int count) {
-        List<Customer> customers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            String name = "Client Maroc " + (i + 1);
-            String address = "Adresse Maroc " + (i + 1);
-            String phone = "21234541"+(i + 2)+(i + 5) + (i + 1);
-            String email = "Email"+(i + 2)+(i + 5) + (i + 1)+"@example.com";
-            Customer customer = new Customer();
-            customer.setAdress(address);
-            customer.setPhone(phone);
-            customer.setName(name);
-            customer.setEmail(email);
-            customers.add(customer);
+    @Test
+    @DisplayName("update the custome then ckeck if is updated")
+    @Order(4)
+    @Transactional
+    void updateCostumer() throws Throwable {
+        System.out.println(customerDb);
 
-        }
-        return customers;
+        // Assurez-vous que customerDb n'est pas null avant de l'utiliser
+        assertNotNull(customerDb, "Le client de la base de données est null");
+
+        System.out.println(customerDb.getId());
+
+        Customer customerUpdate = costumerService.getCostumerById(customerDb.getId()).orElse(null);
+        assumeFalse(customerUpdate == null);
+        customerUpdate.setName("xxx");
+        customerUpdate.setEmail("Em2xxxxail@Exasadasdasssmple.com");
+       Customer savedCustomer = costumerService.updateCostumer(customerDb.getId(),customerUpdate);
+        assertEquals(customerUpdate.getName(), savedCustomer.getName());
+        assertEquals(customerUpdate.getEmail(), savedCustomer.getEmail());
+
+
+    }
+
+    @Test
+    @Order(5)
+    @DisplayName("Delete customer from db")
+    void deleteCostumerById() throws Throwable {
+        costumerService.deleteCostumerById(4L);
+        assertFalse(costumerService.getCostumerById(4L).isPresent(), "Le client devrait être supprimé de la base de données");
+
+    }
+
+    @Test
+    @Order(6)
+    @DisplayName("Get All Customers")
+    void getAllCostumers() {
+        List<Customer> customersList = costumerService.getAllCostumers();
+        assertNotEquals(customersList.size(), customers.size());
+
+    }
+
+
+    @Test
+    void getCostumerOrders() {
     }
 }

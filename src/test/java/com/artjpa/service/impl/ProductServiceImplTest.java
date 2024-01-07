@@ -4,28 +4,29 @@ import com.artjpa.AppConfig.ApplicationConfig;
 import com.artjpa.entities.Inventory;
 import com.artjpa.entities.Product;
 import javax.transaction.Transactional;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Stream;
+
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assumptions.*;
+
 
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ApplicationConfig.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProductServiceImplTest {
 
     @Autowired
@@ -34,81 +35,90 @@ public class ProductServiceImplTest {
     @Autowired
     private InventoryServiceImpl inventoryService;
 
-    @BeforeEach
-    void setUp() {
+    static List<Product> products;
+    static Product product ;
+
+    @BeforeAll
+    static void setUp() {
+        System.out.println("Before ALL Testing ProductService and inventoryService");
+        products = new ArrayList<>();
     }
+    @ParameterizedTest
+    @Order(1)
+    @DisplayName("Get Products from csv file")
+    @CsvFileSource(resources = "/product.csv",  delimiter = ',')
+    void shouldTestPhoneNumberFormatUsingCSVFileSource(String name, String description, String price, int qteStock) {
+        Inventory inventory = new Inventory();
+        inventory.setQuantityInStock(qteStock);
+        Product product = new Product();
+        product.setPrice(new BigDecimal(price));
+        product.setDescription(description);
+        product.setName(name);
+        product.setInventory(inventory);
+        inventory.setProduct(product);
+        products.add(product);
+        System.out.println(products.size());
 
+    }
     @Test
-    void getProductById() {
-        Product product = productService.getProductById(3L).orElse(null);
+    @DisplayName("Insert Products List to database")
+    @Order(2)
+    @Transactional
+    @Rollback(value = false)
+    void saveProduct() {
 
+        products.forEach(product1 -> {
+            assertNotNull(productService.saveProduct(product1));
+
+        });
+
+
+    }
+    @Test
+    @DisplayName("Get Product And inventory ")
+    @Order(3)
+    void getProductById() {
+        product = productService.getProductById(4L).orElse(null);
         System.out.println(product);
         assertNotNull(product);
     }
 
+
     @Test
-    void saveProduct() {
-//        ('Ensemble de Vaisselle Cuivrée', 'Ensemble de vaisselle en cuivre martelé', 750.50, 18),
-//        ('Manteau en Velours', 'Manteau en velours traditionnel marocain', 920.00, 12),
-//        ('Table en Noyer', 'Table en bois de noyer avec incrustations', 880.99, 15),
-//        ('Lanterne Mauresque Géante', 'Lanterne mauresque géante en fer forgé', 720.00, 8)
-        for (int i = 11; i < 20; i++) {
-            String name = "Produit Maroc " + (i + 1);
-            String description = "Description du produit Maroc " + (i + 1);
-            BigDecimal price = BigDecimal.valueOf(getRandomInt(10, 100));
-            Inventory inventory = new Inventory();
-            inventory.setQuantityInStock(getRandomInt(4,25));
-
-            Product product = new Product();
-            product.setPrice(price);
-            product.setDescription(description);
-            product.setName(name);
-            inventory.setProduct(product);
-            product.setInventory(inventory);
-            Product product1= productService.saveProduct(product).orElse(null);
-            assertNotNull(product1);
-
-        }
-
-
-//        Product product2 = new Product();
-//        product2.setPrice(new BigDecimal(920));
-//        product2.setDescription("Ensemble de vaisselle en cuivre martelé");
-//        product2.setName("Ensemble de Vaisselle Cuivrée");
-//        product2.setInventory(inventorySaved);
-//        Product product3= productService.saveProduct(product).orElse(null);
-//        assertNotNull(product3);
-    }
-    @Test
+    @DisplayName("Update Inventory and product")
+    @Order(4)
+    @Transactional
+    @Rollback(value = false)
     void updateProduct(){
-        Product product = productService.getProductById(3L).orElse(null);
-        assertNotNull(product);
+        Product productUpdated = productService.getProductById(product.getId()).orElse(null);
+        assertNotNull(productUpdated);
         Inventory inventory = inventoryService.getInventoryById(product.getInventory().getId());
         inventory.setQuantityInStock(10);
-        inventoryService.saveInventory(inventory);
+        productUpdated.setInventory(inventory);
+        productUpdated.setName("Updated Product");
+        assertNotEquals(product,productService.saveProduct(productUpdated));
     }
     @Test
+    @DisplayName("Delete product And Name")
+    @Transactional
+    @Order(5)
     void deleteProductById() throws Throwable {
-        productService.deleteProductById(10l);
+        productService.deleteProductById(12l);
+        assertFalse(productService.getProductById(12l).isPresent());
     }
 
     @Test
     @Transactional
+    @DisplayName("Get All Product with stock and saled")
+    @Order(6)
     void getAllProducts() {
         List<Product> products = productService.getAllProducts();
-        products.forEach(product -> System.out.println(product.getOrderItemSet()));
+        products.forEach(product1 -> System.out.println(product1 +" "+ product1.getInventory()));
+        assertFalse(products.isEmpty());
     }
 
 
-    int getRandomInt(int min, int max) {
-        Random random = new Random();
-        return random.nextInt((max - min) + 1) + min;
-    }
-    List<Product> createMoroccanProducts(int count) {
-        List<Product> products = new ArrayList<>();
 
-        return products;
-    }
 
 
 }

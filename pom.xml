@@ -61,6 +61,12 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -72,7 +78,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.31</version>
+            <version>8.0.28</version>
         </dependency>
 
         <!-- Spring ORM -->
@@ -109,6 +115,13 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.28</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+            <version>1.3.3</version>
+            <scope>test</scope>
         </dependency>
         <!-- compile only, deployed container will provide this -->
         <!--
