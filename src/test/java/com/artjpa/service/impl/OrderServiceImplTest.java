@@ -36,7 +36,6 @@ class OrderServiceImplTest {
     @Autowired
     OrderItemService orderItemService;
 
-
     @Rollback(value = false)
     @Transactional
     @org.junit.jupiter.api.Order(1)
