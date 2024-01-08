@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: headerFragment ('Customer Management Application')">
+
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+
+<br>
+
+<div class="row">
+    <div class="container">
+        <h3 class="text-center">List of Customers</h3>
+        <hr>
+        <div class="container text-left">
+            <a th:href="@{/customer/new}" class="btn btn-success">Add New Customer</a>
+        </div>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Adress</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="customer : ${listCustomers}">
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.adress}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td>
+                    <a th:href="@{/customer/edit(id=${customer.id})}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{/customer/delete(id=${customer.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: headerFragment ('Product Management Application')">
+
+<body>
+<th:block th:replace="fragments/head :: header"></th:block>
+<br>
+
+<div class="row">
+  <div class="container">
+    <h3 class="text-center">List of Products</h3>
+    <hr>
+    <div class="container text-left">
+      <a th:href="@{/product/new}" class="btn btn-success">Add New Product</a>
+    </div>
+    <br>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Qte stock</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="product : ${listProducts}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.description}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.inventory.quantityInStock}"></td>
+        <td>
+          <a th:href="@{/product/edit(id=${product.id})}">Edit</a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a th:href="@{/product/delete(id=${product.id})}">Delete</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
