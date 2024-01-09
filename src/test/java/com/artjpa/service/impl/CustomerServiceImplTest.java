@@ -32,27 +32,30 @@ class CustomerServiceImplTest {
     long id;
 
     @BeforeAll
-    static void setUp(){
+    static void setUp() {
         System.out.println("BEfore ALL");
         customers = new ArrayList<>();
     }
+
     @BeforeEach
     void beforeEach() {
         // Charger un client spécifique avant chaque test
         id = 6L;
         customerDb = costumerService.getCostumerById(id).orElse(null);
     }
+
     @ParameterizedTest
     @Order(1)
     @DisplayName("Get Customers from csv file")
-    @CsvFileSource(resources = "/customer.csv",  delimiter = ',')
-    void shouldTestPhoneNumberFormatUsingCSVFileSource(String name, String email, String phone, String address) {
-        System.out.println("shouldTestPhoneNumberFormatUsingCSVFileSource");
+    @CsvFileSource(resources = "/customer.csv", delimiter = ',')
+    void getListCustomerFromCsvFile(String name, String email, String phone, String address) {
+        System.out.println("getListCustomerFromCsvFile");
         Customer customer = new Customer();
         customer.setName(name);
         customer.setEmail(email);
         customer.setPhone(phone);
         customer.setAdress(address);
+        assertNotNull(customer);
         customers.add(customer);
 
 
@@ -78,9 +81,10 @@ class CustomerServiceImplTest {
     void getCostumerById() {
         id = 3l;
         customerDb = costumerService.getCostumerById(id).orElse(null);
-        assertNotNull(customerDb,"Customer from db is null");
+        assertNotNull(customerDb, "Customer from db is null");
         System.out.println(customerDb);
     }
+
     @Test
     @DisplayName("update the custome then ckeck if is updated")
     @Order(4)
@@ -97,7 +101,7 @@ class CustomerServiceImplTest {
         assumeFalse(customerUpdate == null);
         customerUpdate.setName("xxx");
         customerUpdate.setEmail("Em2xxxxail@Exasadasdasssmple.com");
-       Customer savedCustomer = costumerService.updateCostumer(customerDb.getId(),customerUpdate);
+        Customer savedCustomer = costumerService.updateCostumer(customerDb.getId(), customerUpdate);
         assertEquals(customerUpdate.getName(), savedCustomer.getName());
         assertEquals(customerUpdate.getEmail(), savedCustomer.getEmail());
 
@@ -108,8 +112,8 @@ class CustomerServiceImplTest {
     @Order(5)
     @DisplayName("Delete customer from db")
     void deleteCostumerById() throws Throwable {
-        costumerService.deleteCostumerById(4L);
-        assertFalse(costumerService.getCostumerById(4L).isPresent(), "Le client devrait être supprimé de la base de données");
+        costumerService.deleteCostumerById(700L);
+        assertFalse(costumerService.getCostumerById(700L).isPresent(), "Le client devrait être supprimé de la base de données");
 
     }
 

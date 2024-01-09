@@ -47,7 +47,7 @@ public class ProductServiceImplTest {
     @Order(1)
     @DisplayName("Get Products from csv file")
     @CsvFileSource(resources = "/product.csv",  delimiter = ',')
-    void shouldTestPhoneNumberFormatUsingCSVFileSource(String name, String description, String price, int qteStock) {
+    void getlistProductFromCsv(String name, String description, String price, int qteStock) {
         Inventory inventory = new Inventory();
         inventory.setQuantityInStock(qteStock);
         Product product = new Product();
