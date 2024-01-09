@@ -107,8 +107,8 @@ class CustomerServiceImplTest {
     @Order(5)
     @DisplayName("Delete customer from db")
     void deleteCostumerById() throws Throwable {
-       costumerService.deleteCostumerById(4L);
-        assertFalse(costumerService.getCostumerById(4L).isPresent(), "Le client devrait être supprimé de la base de données");
+       costumerService.deleteCostumerById(20L);
+        assertFalse(costumerService.getCostumerById(20L).isPresent(), "Le client devrait être supprimé de la base de données");
 
     }
 
